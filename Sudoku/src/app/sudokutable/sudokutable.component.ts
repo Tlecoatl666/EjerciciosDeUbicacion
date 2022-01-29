@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Sudoku, Zona } from './sudoku.models';
+import { ArrayByFila, Casilla, Sudoku, Zona } from './sudoku.models';
 
 @Component({
   selector: 'app-sudokutable',
@@ -99,7 +99,8 @@ export class SudokutableComponent implements OnInit {
 
 
   revisar(){
-    this.porZona()
+    //this.porZona()
+    this.porHorizontal()
   }
 
 
@@ -143,9 +144,104 @@ export class SudokutableComponent implements OnInit {
 
   }
 
+  porHorizontal(){
+
+    let arrayByFila1:ArrayByFila= {numeros:[],isCorrect:true}
+    let arrayByFila2:ArrayByFila= {numeros:[],isCorrect:true}
+    let arrayByFila3:ArrayByFila= {numeros:[],isCorrect:true}
+    let arrayByFila4:ArrayByFila= {numeros:[],isCorrect:true}
+    let arrayByFila5:ArrayByFila= {numeros:[],isCorrect:true}
+    let arrayByFila6:ArrayByFila= {numeros:[],isCorrect:true}
+    let arrayByFila7:ArrayByFila= {numeros:[],isCorrect:true}
+    let arrayByFila8:ArrayByFila= {numeros:[],isCorrect:true}
+    let arrayByFila9:ArrayByFila= {numeros:[],isCorrect:true}
+
+    this.miSudoku.zonas.forEach(zona =>{
+
+      //reviso zonas con fila 1
+      if (zona.fila == 1) {
+        //aqui va a caer 11 12 13
+        zona.casillas.forEach(casilla => {
+          
+          if (casilla.fila == 1) {
+            this.validarCasilla(arrayByFila1,casilla)
+          }
+
+          if (casilla.fila == 2) {
+            this.validarCasilla(arrayByFila2,casilla)
+          }
+
+          if (casilla.fila == 3) {
+            this.validarCasilla(arrayByFila3,casilla)
+          }
+
+        });
+
+      }
+
+      if (zona.fila == 2) {
+        zona.casillas.forEach(casilla => {
+          
+          if (casilla.fila == 1) {
+            this.validarCasilla(arrayByFila4,casilla)
+          }
+
+          if (casilla.fila == 2) {
+            this.validarCasilla(arrayByFila5,casilla)
+          }
+
+          if (casilla.fila == 3) {
+            this.validarCasilla(arrayByFila6,casilla)
+          }
+
+        });
+      }
+
+      if (zona.fila == 3) {
+        zona.casillas.forEach(casilla => {
+          
+          if (casilla.fila == 1) {
+            this.validarCasilla(arrayByFila7,casilla)
+          }
+
+          if (casilla.fila == 2) {
+            this.validarCasilla(arrayByFila8,casilla)
+          }
+
+          if (casilla.fila == 3) {
+            this.validarCasilla(arrayByFila9,casilla)
+          }
+
+        });
+      }
 
 
+    })
 
+
+    if (arrayByFila1.isCorrect == false || arrayByFila2.isCorrect == false ||
+      arrayByFila3.isCorrect == false ||arrayByFila4.isCorrect == false ||
+      arrayByFila5.isCorrect == false ||arrayByFila6.isCorrect == false ||
+      arrayByFila7.isCorrect == false ||arrayByFila8.isCorrect == false ||
+      arrayByFila9.isCorrect == false  ) {
+      this.mensaje = 'No esta armado correctamente'
+    } else {
+      this.mensaje = 'SI esta armado correctamente'
+    }
+
+    
+
+  }
+
+
+  validarCasilla(arrayByfila:ArrayByFila,casilla:Casilla){
+    if (arrayByfila.numeros.includes(casilla.valor)== true) {
+              
+      arrayByfila.isCorrect= false
+    }else{
+      arrayByfila.numeros.push(casilla.valor)
+    }
+  }
 
 
 

@@ -19,3 +19,11 @@ export interface Casilla {
        columna:number  
        valor:number
 }
+
+
+
+export interface ArrayByFila {
+
+       numeros:number[]
+       isCorrect:boolean  
+}
