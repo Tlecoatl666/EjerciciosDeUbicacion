@@ -10,12 +10,12 @@ export class CuboComponent implements OnInit {
 
   mensaje:string ='________'
 
-  cara1:Cara= {casillas:[ {color:'black'},{color:'black'},{color:'black'},{color:'black'},{color:'black'},{color:'black'}  ] }
-  cara2:Cara= {casillas:[ {color:'red'},{color:'red'},{color:'red'},{color:'red'},{color:'red'},{color:'red'}  ] }
-  cara3:Cara= {casillas:[ {color:'yellow'},{color:'yellow'},{color:'yellow'},{color:'yellow'},{color:'yellow'},{color:'yellow'}  ] }
-  cara4:Cara= {casillas:[ {color:'blue'},{color:'blue'},{color:'blue'},{color:'blue'},{color:'blue'},{color:'blue'}  ] }
-  cara5:Cara= {casillas:[ {color:'white'},{color:'white'},{color:'white'},{color:'white'},{color:'white'},{color:'white'}  ] }
-  cara6:Cara= {casillas:[ {color:'green'},{color:'green'},{color:'green'},{color:'green'},{color:'green'},{color:'green'}  ] }
+  cara1:Cara= {casillas:[ {color:'black'},{color:'black'},{color:'black'},{color:'black'},{color:'black'},{color:'black'},{color:'black'},{color:'black'},{color:'black'}   ] }
+  cara2:Cara= {casillas:[ {color:'red'},{color:'red'},{color:'red'},{color:'red'},{color:'red'},{color:'red'} ,{color:'red'},{color:'red'},{color:'red'} ] }
+  cara3:Cara= {casillas:[ {color:'yellow'},{color:'yellow'},{color:'yellow'},{color:'yellow'},{color:'yellow'},{color:'yellow'} ,{color:'yellow'},{color:'yellow'},{color:'yellow'} ] }
+  cara4:Cara= {casillas:[ {color:'blue'},{color:'blue'},{color:'blue'},{color:'blue'},{color:'blue'},{color:'blue'},{color:'blue'},{color:'blue'},{color:'blue'}   ] }
+  cara5:Cara= {casillas:[ {color:'white'},{color:'white'},{color:'white'},{color:'white'},{color:'white'},{color:'white'},{color:'white'},{color:'white'},{color:'white'}  ] }
+  cara6:Cara= {casillas:[ {color:'green'},{color:'green'},{color:'green'},{color:'green'},{color:'green'},{color:'green'},{color:'green'},{color:'green'},{color:'green'}  ] }
 
 
   miCubo:Cubo = {
@@ -70,7 +70,7 @@ export class CuboComponent implements OnInit {
 
       console.log(black,red,yellow,blue,white,green);
 
-      if (black == 6 || red == 6 || yellow == 6 || blue == 6 || white == 6 || green  == 6  ) {
+      if (black == 9 || red == 9 || yellow == 9 || blue == 9 || white == 9 || green  == 9  ) {
         //entonces esta bien esta cara
         
         arrayCarasResultado[contador]=1
