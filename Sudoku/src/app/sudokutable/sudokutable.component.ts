@@ -9,6 +9,7 @@ import {  ArrayByColumna, ArrayByFila, Casilla, Sudoku, Zona } from './sudoku.mo
 export class SudokutableComponent implements OnInit {
 
 
+  
   magicSum = 45
   mensaje:string = ''
   sudokuIsvalid:boolean = false
@@ -93,7 +94,10 @@ export class SudokutableComponent implements OnInit {
     zonas:[this.zona1,this.zona2,this.zona3,this.zona4,this.zona5,this.zona6,this.zona7,this.zona8,this.zona9,]
   }
 
-  constructor() { }
+  
+  constructor() { 
+    this.miSudoku.zonas[1].casillas[1];
+  }
 
   ngOnInit(): void {
   }
