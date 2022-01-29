@@ -137,8 +137,8 @@ export class TableroComponent implements OnInit {
     this.correcto = true
     this.mensaje = 'Bien armado'
     //console.log(this.tableroMain);
-    //this.revisarHorizontal();
-    //this.revisarVertical()
+    this.revisarHorizontal();
+    this.revisarVertical()
 
   }
 
