@@ -27,3 +27,9 @@ export interface ArrayByFila {
        numeros:number[]
        isCorrect:boolean  
 }
+
+export interface ArrayByColumna {
+
+    numeros:number[]
+    isCorrect:boolean  
+}

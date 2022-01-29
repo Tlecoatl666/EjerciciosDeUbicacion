@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ArrayByFila, Casilla, Sudoku, Zona } from './sudoku.models';
+import {  ArrayByColumna, ArrayByFila, Casilla, Sudoku, Zona } from './sudoku.models';
 
 @Component({
   selector: 'app-sudokutable',
@@ -10,7 +10,8 @@ export class SudokutableComponent implements OnInit {
 
 
   magicSum = 45
-  mensaje:string = '________________'
+  mensaje:string = ''
+  sudokuIsvalid:boolean = false
 
 
   zona1:Zona= {
@@ -99,8 +100,9 @@ export class SudokutableComponent implements OnInit {
 
 
   revisar(){
-    //this.porZona()
+    this.porZona()
     this.porHorizontal()
+    this.porVertical()
   }
 
 
@@ -128,18 +130,17 @@ export class SudokutableComponent implements OnInit {
         
 
       })
-      //console.log(arrayValXzona);
+      
 
     })
 
+    this.sudokuIsvalid = true 
+    this.mensaje = 'SI esta armado correctamente'
     this.miSudoku.zonas.forEach(zona => {
-
       if (zona.isCorrect == false) {
+        this.sudokuIsvalid = false 
         this.mensaje = 'NO esta armado correctamente'
-      }else{
-        this.mensaje = 'SI esta armado correctamente'
       }
-
     })
 
   }
@@ -219,13 +220,18 @@ export class SudokutableComponent implements OnInit {
     })
 
 
+   /*  console.log(arrayByFila1,arrayByFila2,arrayByFila3,arrayByFila4,arrayByFila5,arrayByFila6,arrayByFila7,arrayByFila8,arrayByFila9);
+     */
+
     if (arrayByFila1.isCorrect == false || arrayByFila2.isCorrect == false ||
       arrayByFila3.isCorrect == false ||arrayByFila4.isCorrect == false ||
       arrayByFila5.isCorrect == false ||arrayByFila6.isCorrect == false ||
       arrayByFila7.isCorrect == false ||arrayByFila8.isCorrect == false ||
       arrayByFila9.isCorrect == false  ) {
+        this.sudokuIsvalid = false 
       this.mensaje = 'No esta armado correctamente'
     } else {
+      this.sudokuIsvalid = true 
       this.mensaje = 'SI esta armado correctamente'
     }
 
@@ -234,12 +240,115 @@ export class SudokutableComponent implements OnInit {
   }
 
 
+  porVertical(){
+    let arrayByColumna1:ArrayByColumna= {numeros:[],isCorrect:true}
+    let arrayByColumna2:ArrayByColumna= {numeros:[],isCorrect:true}
+    let arrayByColumna3:ArrayByColumna= {numeros:[],isCorrect:true}
+    let arrayByColumna4:ArrayByColumna= {numeros:[],isCorrect:true}
+    let arrayByColumna5:ArrayByColumna= {numeros:[],isCorrect:true}
+    let arrayByColumna6:ArrayByColumna= {numeros:[],isCorrect:true}
+    let arrayByColumna7:ArrayByColumna= {numeros:[],isCorrect:true}
+    let arrayByColumna8:ArrayByColumna= {numeros:[],isCorrect:true}
+    let arrayByColumna9:ArrayByColumna= {numeros:[],isCorrect:true}
+
+    this.miSudoku.zonas.forEach(zona =>{
+
+      //reviso zonas con col 1
+      if (zona.columna == 1) {
+        //aqui va a caer 11 12 13
+        zona.casillas.forEach(casilla => {
+          
+          if (casilla.columna == 1) {
+            this.validarCasilla(arrayByColumna1,casilla)
+          }
+
+          if (casilla.columna == 2) {
+            this.validarCasilla(arrayByColumna2,casilla)
+          }
+
+          if (casilla.columna == 3) {
+            this.validarCasilla(arrayByColumna3,casilla)
+          }
+
+        });
+
+      }
+
+      if (zona.columna == 2) {
+        zona.casillas.forEach(casilla => {
+          
+          if (casilla.columna == 1) {
+            this.validarCasilla(arrayByColumna4,casilla)
+          }
+
+          if (casilla.columna == 2) {
+            this.validarCasilla(arrayByColumna5,casilla)
+          }
+
+          if (casilla.columna == 3) {
+            this.validarCasilla(arrayByColumna6,casilla)
+          }
+
+        });
+      }
+
+      if (zona.columna == 3) {
+        zona.casillas.forEach(casilla => {
+          
+          if (casilla.columna == 1) {
+            this.validarCasilla(arrayByColumna7,casilla)
+          }
+
+          if (casilla.columna == 2) {
+            this.validarCasilla(arrayByColumna8,casilla)
+          }
+
+          if (casilla.columna == 3) {
+            this.validarCasilla(arrayByColumna9,casilla)
+          }
+
+        });
+      }
+
+
+    })
+
+
+   /*  console.log(arrayByColumna1,arrayByColumna2,arrayByColumna3,arrayByColumna4,
+      arrayByColumna5,arrayByColumna6,arrayByColumna7,arrayByColumna8,arrayByColumna9);
+     */
+
+    if (arrayByColumna1.isCorrect == false || arrayByColumna2.isCorrect == false ||
+      arrayByColumna3.isCorrect == false ||arrayByColumna4.isCorrect == false ||
+      arrayByColumna5.isCorrect == false ||arrayByColumna6.isCorrect == false ||
+      arrayByColumna7.isCorrect == false ||arrayByColumna8.isCorrect == false ||
+      arrayByColumna9.isCorrect == false  ) {
+        this.sudokuIsvalid = false 
+      this.mensaje = 'No esta armado correctamente'
+    } else {
+      this.sudokuIsvalid = true 
+      this.mensaje = 'SI esta armado correctamente'
+    }
+  }
+
+
+
+
+
   validarCasilla(arrayByfila:ArrayByFila,casilla:Casilla){
+
     if (arrayByfila.numeros.includes(casilla.valor)== true) {
               
       arrayByfila.isCorrect= false
     }else{
-      arrayByfila.numeros.push(casilla.valor)
+
+      if(casilla.valor <1 || casilla.valor>9){
+        arrayByfila.isCorrect= false
+      }else{
+        arrayByfila.numeros.push(casilla.valor)
+      }
+
+      
     }
   }
 
